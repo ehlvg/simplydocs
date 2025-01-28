@@ -4,10 +4,10 @@ import React, { useState, useEffect, createContext, useContext } from "react";
 import { marked } from "marked";
 import CodeMirror from "@uiw/react-codemirror";
 import { markdown } from "@codemirror/lang-markdown";
-import { Sun, Moon, Download, Plus, X, Edit2 } from "lucide-react";
+import { Sun, Moon, Download, Plus, X, Edit2, Info } from "lucide-react";
 import { useTheme } from "next-themes";
+import { Onboarding } from "./components/Onboarding";
 
-// Types
 interface Document {
   id: string;
   title: string;
@@ -24,12 +24,8 @@ interface DocumentsContextType {
   setActiveDocument: (id: string) => void;
 }
 
-// Context
 const DocumentsContext = createContext<DocumentsContextType | null>(null);
 
-// Remove useDarkMode custom hook as we'll use next-themes
-
-// Documents Provider
 function DocumentsProvider({ children }: { children: React.ReactNode }) {
   const [documents, setDocuments] = useState<Document[]>(() => {
     const saved = localStorage.getItem("documents");
@@ -87,10 +83,10 @@ function DocumentsProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Components
 function Header() {
   const { theme, setTheme } = useTheme();
   const docs = useContext(DocumentsContext);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   if (!docs) return null;
 
@@ -126,16 +122,28 @@ function Header() {
           </button>
         )}
       </div>
-      <button
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-      >
-        {theme === "dark" ? (
-          <Sun className="w-5 h-5" />
-        ) : (
-          <Moon className="w-5 h-5" />
-        )}
-      </button>
+      <div className="flex items-center gap-4">
+        <button
+          onClick={() => setShowOnboarding(true)}
+          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          <Info className="w-5 h-5" />
+        </button>
+        <button
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          {theme === "dark" ? (
+            <Sun className="w-5 h-5" />
+          ) : (
+            <Moon className="w-5 h-5" />
+          )}
+        </button>
+      </div>
+      <Onboarding
+        isOpen={showOnboarding}
+        onClose={() => setShowOnboarding(false)}
+      />
     </header>
   );
 }
@@ -270,12 +278,17 @@ function Editor() {
   );
 }
 
-// Update the main app container colors
 export default function App() {
   const [mounted, setMounted] = useState(false);
+  const [showInitialOnboarding, setShowInitialOnboarding] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    const hasSeenOnboarding = localStorage.getItem("hasSeenOnboarding");
+    if (!hasSeenOnboarding) {
+      setShowInitialOnboarding(true);
+      localStorage.setItem("hasSeenOnboarding", "true");
+    }
   }, []);
 
   if (!mounted) {
@@ -288,6 +301,10 @@ export default function App() {
         <Header />
         <Tabs />
         <Editor />
+        <Onboarding
+          isOpen={showInitialOnboarding}
+          onClose={() => setShowInitialOnboarding(false)}
+        />
       </div>
     </DocumentsProvider>
   );

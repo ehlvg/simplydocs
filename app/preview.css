@@ -174,7 +174,6 @@
   transition: all 0.2s ease;
 }
 
-/* Update selection colors */
 #preview ::selection {
   background-color: #3b82f6;
   color: #fff;
