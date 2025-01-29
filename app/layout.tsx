@@ -28,6 +28,7 @@ export default function RootLayout({
           integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn"
           crossOrigin="anonymous"
         ></link>
+        <meta name="apple-mobile-web-app-title" content="simply.doc" />
       </head>
       <body className={`${sofiaSans.variable} antialiased`}>
         <ThemeProvider
@@ -38,8 +39,8 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <script src="https://cdn.jsdelivr.net/npm/marked-footnote/dist/index.umd.min.js"></script>
       </body>
-      <script src="https://cdn.jsdelivr.net/npm/marked-footnote/dist/index.umd.min.js"></script>
     </html>
   );
 }
