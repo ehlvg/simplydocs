@@ -26,33 +26,36 @@ export function Header() {
   };
 
   return (
-    <header className="flex items-center justify-between p-4 rounded-lg m-4 border border-gray-200 dark:border-gray-700">
+    <header className="flex items-center justify-between p-4 rounded-lg m-4 border border-gray-200 dark:border-gray-700 bg-blue-50 dark:bg-blue-900/30">
       <div className="flex items-center gap-4">
         <button
           onClick={() => docs.addDocument()}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out hover:scale-105"
+          className="p-2 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-800 transition-all duration-200 ease-in-out hover:scale-110"
         >
           <Plus className="w-5 h-5" />
         </button>
         {activeDoc && (
           <button
             onClick={exportMarkdown}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out hover:scale-105"
+            className="p-2 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-800 transition-all duration-200 ease-in-out hover:scale-110"
           >
             <Download className="w-5 h-5" />
           </button>
         )}
       </div>
+      <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 flex align-center items-center text-center">
+        simply.doc
+      </h1>
       <div className="flex items-center gap-4">
         <button
           onClick={() => setShowOnboarding(true)}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out hover:scale-105"
+          className="p-2 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-800 transition-all duration-200 ease-in-out hover:scale-110"
         >
           <Info className="w-5 h-5" />
         </button>
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out hover:scale-105"
+          className="p-2 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-800 transition-all duration-200 ease-in-out hover:scale-110"
         >
           {theme === "dark" ? (
             <Sun className="w-5 h-5" />

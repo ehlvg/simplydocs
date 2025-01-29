@@ -30,7 +30,7 @@ export function Tabs() {
             group
             flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer
             transition-all duration-200 ease-in-out
-            animate-fade-in
+            animate-fade-in min-h-[2rem]
             ${
               doc.id === docs.activeDocId
                 ? "bg-blue-100 dark:bg-blue-900/30"
