@@ -1,11 +1,11 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
-import {Onboarding} from "./components/Onboarding";
-import {Editor} from "@/app/components/Editor";
-import {DocumentsProvider} from "@/app/components/Document";
-import {Header} from "@/app/components/Header";
-import {Tabs} from "@/app/components/Tabs";
+import React, { useEffect, useState } from "react";
+import { Onboarding } from "./components/Onboarding";
+import { Editor } from "@/app/components/Editor";
+import { DocumentsProvider } from "@/app/components/Document";
+import { Header } from "@/app/components/Header";
+import { Tabs } from "@/app/components/Tabs";
 
 export default function App() {
   const [mounted, setMounted] = useState(false);
@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <DocumentsProvider>
-      <div className="h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sofia-sans">
+      <div className="h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sofia-sans flex flex-col">
         <Header />
         <Tabs />
         <Editor />
