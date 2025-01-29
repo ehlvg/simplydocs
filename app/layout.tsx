@@ -10,8 +10,8 @@ const sofiaSans = Sofia_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "SimplyDoc",
-  description: "Simple Markdown Editor",
+  title: "simply.doc",
+  description: "Elegant writing tool",
 };
 
 export default function RootLayout({

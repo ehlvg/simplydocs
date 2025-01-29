@@ -25,7 +25,7 @@ export function Onboarding({ isOpen, onClose }: OnboardingProps) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className="relative w-full max-w-2xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl mx-4"
+            className="relative w-full max-h-[80%] overflow-y-auto max-w-2xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl mx-4"
           >
             <button
               onClick={onClose}
@@ -42,7 +42,7 @@ export function Onboarding({ isOpen, onClose }: OnboardingProps) {
                 className="text-center"
               >
                 <h1 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700 dark:from-blue-400 dark:to-blue-600">
-                  Welcome to SimplyDoc
+                  Welcome to simply.doc
                 </h1>
                 <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
                   Your elegant Markdown editing companion
