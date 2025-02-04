@@ -13,7 +13,6 @@
 
 <img alt="simplydoc screenshot" src="https://github.com/user-attachments/assets/3bfaad7b-39b8-4643-a555-b2d5b4e0c0f8" />
 
-
 ## About
 
 simply.doc is a powerful offline-first PWA [^1] Markdown editor with real-time preview.
@@ -30,6 +29,5 @@ simply.doc is a powerful offline-first PWA [^1] Markdown editor with real-time p
 ## Tech Stack
 
 This project uses `Next.js`, `TypeScript`, `PWA`, `CodeMirror`, `KaTeX`, `marked`.
-
 
 [^1]: Means Progressive Web Application
