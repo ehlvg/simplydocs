@@ -17,26 +17,26 @@ export function Header() {
   const exportMarkdown = async () => {
     if (!activeDoc) return;
 
-    if ("showSaveFilePicker" in window) {
-      try {
-        const handle = await window.showSaveFilePicker({
-          suggestedName: `${activeDoc.title}.md`,
-          types: [
-            {
-              description: "Markdown",
-              accept: { "text/markdown": [".md"] },
-            },
-          ],
-        });
+    // if ("showSaveFilePicker" in window) {
+    //   try {
+    //     const handle = await window.showSaveFilePicker({
+    //       suggestedName: `${activeDoc.title}.md`,
+    //       types: [
+    //         {
+    //           description: "Markdown",
+    //           accept: { "text/markdown": [".md"] },
+    //         },
+    //       ],
+    //     });
 
-        const writable = await handle.createWritable();
-        await writable.write(activeDoc.content);
-        await writable.close();
-        return;
-      } catch (err) {
-        // Fall through to legacy method if user cancels or API fails
-      }
-    }
+    //     const writable = await handle.createWritable();
+    //     await writable.write(activeDoc.content);
+    //     await writable.close();
+    //     return;
+    //   } catch (err) {
+    //     // Fall through to legacy method if user cancels or API fails
+    //   }
+    // }
 
     // Fallback to traditional download method
     const blob = new Blob([activeDoc.content], { type: "text/markdown" });
