@@ -7,6 +7,7 @@ import { DocumentsContext } from "@/app/components/Document";
 import markedKatex from "marked-katex-extension";
 import markedFootnote from "marked-footnote";
 import { Plus } from "lucide-react";
+import DOMPurify from "dompurify";
 
 export function Editor() {
   const docs = useContext(DocumentsContext);
@@ -88,7 +89,9 @@ export function Editor() {
               ? "block animate-fade-in"
               : "hidden md:block md:animate-fade-in"
           }`}
-          dangerouslySetInnerHTML={{ __html: marked(activeDoc.content) }}
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(marked(activeDoc.content)),
+          }}
         />
       </div>
     </>
