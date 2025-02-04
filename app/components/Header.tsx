@@ -17,24 +17,35 @@ export function Header() {
   const exportMarkdown = async () => {
     if (!activeDoc) return;
 
-    try {
-      const handle = await window.showSaveFilePicker({
-        suggestedName: `${activeDoc.title}.md`,
-        types: [
-          {
-            description: "Markdown",
-            accept: { "text/markdown": [".md"] },
-          },
-        ],
-      });
+    if ("showSaveFilePicker" in window) {
+      try {
+        const handle = await window.showSaveFilePicker({
+          suggestedName: `${activeDoc.title}.md`,
+          types: [
+            {
+              description: "Markdown",
+              accept: { "text/markdown": [".md"] },
+            },
+          ],
+        });
 
-      const writable = await handle.createWritable();
-      await writable.write(activeDoc.content);
-      await writable.close();
-    } catch (err) {
-      // User cancelled or API not supported
-      console.log("File save cancelled or not supported");
+        const writable = await handle.createWritable();
+        await writable.write(activeDoc.content);
+        await writable.close();
+        return;
+      } catch (err) {
+        // Fall through to legacy method if user cancels or API fails
+      }
     }
+
+    // Fallback to traditional download method
+    const blob = new Blob([activeDoc.content], { type: "text/markdown" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${activeDoc.title}.md`;
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   const handleFileImport = (e: React.ChangeEvent<HTMLInputElement>) => {
