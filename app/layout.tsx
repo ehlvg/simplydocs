@@ -29,6 +29,8 @@ export default function RootLayout({
           crossOrigin="anonymous"
         ></link>
         <meta name="apple-mobile-web-app-title" content="simply.doc" />
+        <meta name="mobile-web-app-capable" content="yes"></meta>
+        <meta name="apple-mobile-wep-app-capable" content="yes"></meta>
       </head>
       <body className={`${sofiaSans.variable} antialiased`}>
         <ThemeProvider
